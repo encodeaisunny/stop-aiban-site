@@ -1,0 +1,1638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Big Tech's 10-Year AI Free Pass: $42.5B Hostage Crisis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: 
+                linear-gradient(180deg, rgba(30, 41, 59, 0.9) 0%, rgba(51, 65, 85, 0.9) 100%),
+                url('https://plus.unsplash.com/premium_photo-1694475309861-c5d754d6690d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover no-repeat,
+                #334155;
+            color: #ffffff;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .hero-section {
+            padding: 1.5rem 0 1rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .cta-section {
+            text-align: center;
+            margin: 1rem 0 1.5rem;
+        }
+
+        .petition-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-family: 'Georgia', serif;
+        }
+
+        .petition-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(30, 64, 175, 0.4);
+            background: linear-gradient(135deg, #1d4ed8, #2563eb);
+        }
+
+        .hero-section h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            color: #f1f5f9;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.01em;
+            font-family: 'Georgia', serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .hero-section h2 {
+            font-size: clamp(1.2rem, 2.5vw, 1.75rem);
+            font-weight: 600;
+            color: #e2e8f0;
+            margin-bottom: 1rem;
+            font-family: 'Georgia', serif;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .left-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .crisis-alert {
+            background: linear-gradient(135deg, rgba(71, 85, 105, 0.3), rgba(100, 116, 139, 0.2));
+            border: 2px solid #cbd5e1;
+            border-radius: 12px;
+            padding: 1.5rem;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .crisis-alert h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #f1f5f9;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Georgia', serif;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+        }
+
+        .crisis-alert p {
+            font-size: 1rem;
+            color: #e2e8f0;
+            margin-bottom: 1rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .crisis-alert .highlight {
+            background: rgba(203, 213, 225, 0.2);
+            padding: 0.8rem;
+            border-radius: 8px;
+            border-left: 4px solid #cbd5e1;
+            font-weight: 600;
+            color: #f8fafc;
+        }
+
+        .map-section {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .map-header {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .map-header h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .map-header p {
+            font-size: 0.95rem;
+            color: #9ca3af;
+        }
+
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.5rem 0.8rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .state-grid {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 4px;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+        }
+
+        .state-tile {
+            aspect-ratio: 1;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 10px;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            color: white;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+            border: 2px solid transparent;
+        }
+
+        .state-tile:hover {
+            transform: scale(1.2);
+            border-color: #fbbf24;
+            box-shadow: 0 4px 16px rgba(251, 191, 36, 0.4);
+            z-index: 10;
+        }
+
+        .massive-impact { 
+            background: linear-gradient(135deg, #991b1b, #dc2626); 
+            color: #ffffff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+        }
+        .major-impact { 
+            background: linear-gradient(135deg, #f1f5f9, #ffffff); 
+            color: #1e293b; 
+            text-shadow: none; 
+            font-weight: 700; 
+            border: 2px solid #64748b;
+        }
+        .notable-impact { 
+            background: linear-gradient(135deg, #1e40af, #3b82f6); 
+            color: #ffffff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+        }
+
+        .right-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .bead-explainer {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 12px;
+            padding: 1.2rem;
+        }
+
+        .bead-explainer h4 {
+            color: #60a5fa;
+            font-weight: 600;
+            margin-bottom: 0.7rem;
+            font-size: 1.1rem;
+        }
+
+        .bead-explainer p {
+            font-size: 0.9rem;
+            color: #d1d5db;
+            line-height: 1.5;
+        }
+
+        .opposition-box {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 12px;
+            padding: 1.2rem;
+        }
+
+        .opposition-box h4 {
+            color: #4ade80;
+            font-weight: 600;
+            margin-bottom: 0.7rem;
+            font-size: 1.1rem;
+        }
+
+        .opposition-box p {
+            font-size: 0.9rem;
+            color: #d1d5db;
+            line-height: 1.5;
+        }
+
+        .key-points {
+            background: rgba(168, 85, 247, 0.1);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: 12px;
+            padding: 1.2rem;
+        }
+
+        .key-points h4 {
+            color: #c084fc;
+            font-weight: 600;
+            margin-bottom: 0.7rem;
+            font-size: 1.1rem;
+        }
+
+        .key-points ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .key-points li {
+            font-size: 0.9rem;
+            color: #d1d5db;
+            margin-bottom: 0.5rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .key-points li::before {
+            content: "•";
+            color: #c084fc;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .urgent-action {
+            background: rgba(220, 38, 38, 0.1);
+            border: 1px solid rgba(220, 38, 38, 0.3);
+            border-radius: 12px;
+            padding: 1.2rem;
+        }
+
+        .urgent-action h4 {
+            color: #fb7185;
+            font-weight: 600;
+            margin-bottom: 0.7rem;
+            font-size: 1.1rem;
+        }
+
+        .urgent-action p {
+            font-size: 0.9rem;
+            color: #d1d5db;
+            line-height: 1.5;
+            margin-bottom: 0.7rem;
+        }
+
+        .urgent-action p:last-child {
+            margin-bottom: 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .faq-section {
+            background: linear-gradient(135deg, rgba(71, 85, 105, 0.2), rgba(100, 116, 139, 0.1));
+            border: 1px solid rgba(203, 213, 225, 0.3);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .faq-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #f1f5f9;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-family: 'Georgia', serif;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+        }
+
+        .faq-item {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(203, 213, 225, 0.2);
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .faq-question {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #60a5fa;
+            margin-bottom: 1rem;
+            font-family: 'Georgia', serif;
+        }
+
+        .faq-answer {
+            font-size: 1rem;
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+
+        .faq-answer p {
+            margin-bottom: 0.8rem;
+        }
+
+        .faq-answer strong {
+            color: #f1f5f9;
+        }
+
+        .faq-answer ul {
+            list-style: none;
+            padding-left: 1rem;
+            margin: 0.8rem 0;
+        }
+
+        .faq-answer li {
+            margin-bottom: 0.4rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .faq-answer li::before {
+            content: "•";
+            color: #60a5fa;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .footer {
+            border-top: 1px solid rgba(156, 163, 175, 0.2);
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .sponsor-info {
+            text-align: right;
+            color: #9ca3af;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .sponsor-info p {
+            margin-bottom: 0.25rem;
+        }
+
+        .sponsor-info a {
+            color: #60a5fa;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .sponsor-info a:hover {
+            color: #93c5fd;
+            text-decoration: underline;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(71, 85, 105, 0.2), rgba(100, 116, 139, 0.1));
+            padding: 1.2rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(203, 213, 225, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #e2e8f0;
+            margin-bottom: 0.3rem;
+            letter-spacing: -0.01em;
+            font-family: 'Georgia', serif;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: #d1d5db;
+            font-weight: 500;
+        }
+
+        .info-panel {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 500px;
+            height: 100vh;
+            background: linear-gradient(180deg, #111827, #1f2937);
+            padding: 2rem;
+            box-shadow: -20px 0 50px rgba(0, 0, 0, 0.5);
+            transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto;
+            z-index: 1000;
+            border-left: 2px solid #fbbf24;
+        }
+
+        .info-panel.open {
+            right: 0;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: rgba(220, 38, 38, 0.2);
+            border: 1px solid #dc2626;
+            color: #dc2626;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .close-btn:hover {
+            background: rgba(220, 38, 38, 0.3);
+        }
+
+        .state-name {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #f8fafc;
+            margin-bottom: 0.5rem;
+            font-family: 'Georgia', serif;
+        }
+
+        .funding-amount {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .impact-level {
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            display: inline-block;
+            color: #ffffff !important; 
+        }
+
+        .section {
+            margin-bottom: 2rem;
+        }
+
+        .section h3 {
+            color: #ffffff;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            font-family: 'Georgia', serif;
+        }
+
+        .ai-law {
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(30, 58, 138, 0.05));
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border-left: 3px solid #dc2626;
+        }
+
+        .law-title {
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 0.25rem;
+            font-family: 'Georgia', serif;
+        }
+
+        .law-bill {
+            font-size: 0.85rem;
+            color: #9ca3af;
+            margin-bottom: 0.5rem;
+        }
+
+        .law-description {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #d1d5db;
+        }
+
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .right-panel {
+                order: -1;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 0.5rem;
+            }
+            
+            .hero-section {
+                padding: 1.5rem 0 1rem;
+            }
+            
+            .state-grid {
+                grid-template-columns: repeat(8, 1fr);
+                gap: 3px;
+            }
+            
+            .info-panel {
+                width: 100%;
+            }
+            
+            .state-tile {
+                font-size: 9px;
+            }
+            
+            .legend {
+                gap: 0.5rem;
+            }
+            
+            .legend-item {
+                padding: 0.4rem 0.6rem;
+                font-size: 0.8rem;
+            }
+
+            .footer-content {
+                justify-content: center;
+            }
+            
+            .sponsor-info {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero-section">
+            <h1>$42.5 BILLION</h1>
+            <h2>Congress: No Broadband Money Unless You Stop Regulating AI for 10 Years</h2>
+        </div>
+
+        <div class="cta-section">
+            <a href="https://ari.us/campaign/tell-congress-dont-erase-ai-safeguards/" class="petition-button" id="petitionBtn">
+                ⚡ Bill Could Pass Soon - Stop It Now
+            </a>
+        </div>
+
+        <div class="main-content">
+            <div class="left-panel">
+                <div class="crisis-alert">
+                    <h3>🚨 States Must Choose: Rural Internet or Consumer Protection</h3>
+                    <p>Buried in the "Big Beautiful Bill" is a disastrous provision that would <strong>ban states and local governments from regulating AI for 10 full years</strong> while Congress refuses to take action on AI oversight.</p>
+                    
+                    <p>The ultimatum is simple: If states want their $42.5 billion in broadband money, they must agree to let Big Tech deploy AI without any consumer safeguards for an entire decade.</p>
+                    
+                    <div class="highlight">
+                        <strong>The betrayal:</strong> 40 bipartisan state attorneys general oppose this provision because it forces states to abandon their constitutional duty to protect citizens in exchange for federal infrastructure funding.
+                    </div>
+                </div>
+
+                <div class="map-section">
+                    <div class="map-header">
+                        <h3>State-by-State Impact Analysis</h3>
+                        <p>Click any state to see funding at risk and threatened protections</p>
+                    </div>
+                    
+                    <div class="legend">
+                        <div class="legend-item">
+                            <div class="legend-color notable-impact"></div>
+                            <span>Under $500M at Stake</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color major-impact"></div>
+                            <span>$500M - $1.5B at Stake</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color massive-impact"></div>
+                            <span>Over $1.5B at Stake</span>
+                        </div>
+                    </div>
+
+                    <div class="state-grid" id="stateGrid">
+                        <!-- States populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-panel" id="rightPanel">
+                <div class="bead-explainer">
+                    <h4>💰 What is BEAD?</h4>
+                    <p>The Broadband Equity, Access, and Deployment Program is $42.5 billion from the 2021 Infrastructure Act to bring high-speed internet to every American. These funds are already allocated to connect rural communities and drive economic development.</p>
+                </div>
+
+                <div class="opposition-box">
+                    <h4>⚖️ Bipartisan Opposition</h4>
+                    <p>40 state attorneys general from both parties—including deep-red states like Louisiana, South Dakota, Tennessee, and Oklahoma—oppose this federal overreach that strips states' rights.</p>
+                </div>
+
+                <div class="key-points">
+                    <h4>🎯 Why This Matters</h4>
+                    <ul>
+                        <li>Big Tech gets 10 years to deploy AI without oversight</li>
+                        <li>No federal AI regulations exist to fill the gap</li>
+                        <li>States blocked from protecting workers and children</li>
+                        <li>Monopolies like Google, Meta get blank check</li>
+                        <li>Rural communities lose broadband if states resist</li>
+                    </ul>
+                </div>
+
+                <div class="urgent-action">
+                    <h4>🚨 Senate Vote This Week</h4>
+                    <p><strong>Time is running out!</strong> The Senate could vote on this as early as this weekend in a marathon "vote-a-rama." Senators from both parties have already promised to offer amendments to strip this out.</p>
+                    <p><strong>Your voice matters:</strong> Call your senators NOW and demand they vote to remove the AI moratorium from the reconciliation bill.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">$42.5B</div>
+                <div class="stat-label">Hostage Funding</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">232+</div>
+                <div class="stat-label">Threatened Laws</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">40</div>
+                <div class="stat-label">AGs Opposed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">10 Years</div>
+                <div class="stat-label">AI Free Pass</div>
+            </div>
+        </div>
+
+        <div class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Q: Why do you claim this impacts all $42.5 billion? I thought the reconciliation bill only adds $500 million to BEAD?
+                </div>
+                <div class="faq-answer">
+                    <p><strong>The legal trap is more devastating than it appears.</strong> While the bill appropriates only $500 million in new BEAD funding, the moratorium applies to <em>any state that accepts any amount of BEAD funding on or after the bill's enactment</em>.</p>
+                    
+                    <p>Here's how the entire $42.5 billion becomes hostage:</p>
+                    <ul>
+                        <li>All $42.45 billion from the 2021 Infrastructure Act has been "obligated" to states but not yet fully spent</li>
+                        <li>If a state accepts even $1 of the new $500 million, the moratorium kicks in for that state</li>
+                        <li>The Department of Commerce can then "deobligate" (take back) previously allocated funds for violations</li>
+                        <li>Once funds are deobligated, states must comply with the moratorium to get any future BEAD money back</li>
+                    </ul>
+                    
+                    <p>It's a legal mousetrap: states that initially refuse the $500 million can still lose billions in previously allocated funding through administrative action, then be forced to comply with the AI moratorium to restore those funds.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    Q: Why do you claim this would impact generally applicable laws? Doesn't the bill have exceptions?
+                </div>
+                <div class="faq-answer">
+                    <p><strong>The "exception" is a mirage.</strong> The moratorium's "Rule of Construction" creates an exception only for laws that both:</p>
+                    <ul>
+                        <li>Are generally applicable <strong>AND</strong></li>
+                        <li>Have the "primary purpose and effect" of facilitating or streamlining AI development</li>
+                    </ul>
+                    
+                    <p>This means existing consumer protection laws—antitrust enforcement, privacy protections, anti-discrimination statutes, criminal laws—would be <strong>unenforceable against AI companies</strong> because they don't have the "primary purpose" of facilitating AI development.</p>
+                    
+                    <p>Federal courts interpret statutory language as written. When Congress uses "and" to connect two requirements, both must be met. The exception is so narrow it's virtually nonexistent—exactly what Big Tech wants.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    Q: Has Congress ever done anything like this before? What makes this different?
+                </div>
+                <div class="faq-answer">
+                    <p><strong>No—not at this scale or for this duration.</strong> Congress has sometimes preempted state rules in mature industries like telecom or aviation, but this is unprecedented:</p>
+                    
+                    <p><strong>What makes this a historic overreach:</strong></p>
+                    <ul>
+                        <li>It covers <strong>every use of AI</strong>, in <strong>every sector</strong>, across <strong>all 50 states</strong></li>
+                        <li>It creates a regulatory vacuum <strong>before Congress has passed any federal AI rules</strong></li>
+                        <li>It lasts <strong>a full decade</strong>—longer than any technology-related preemption in U.S. history</li>
+                        <li>It uses infrastructure funding as leverage to strip states' constitutional police powers</li>
+                    </ul>
+                    
+                    <p>Previous preemptions replaced state rules with federal oversight. This eliminates oversight entirely while emerging AI technology poses unprecedented risks to workers, children, and democracy itself. It's not coordination—it's a complete regulatory freeze that benefits only Big Tech monopolies.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="sponsor-info">
+                <p>Website Sponsored by Encode AI</p>
+                <p><a href="https://encodeai.org" target="_blank">encodeai.org</a></p>
+                <p><a href="mailto:comms@encodeai.org">comms@encodeai.org</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="info-panel" id="infoPanel">
+        <button class="close-btn" onclick="closePanel()">×</button>
+        <div class="state-name" id="stateName">Select a State</div>
+        <div class="funding-amount" id="fundingAmount">$0M at Risk</div>
+        <div class="impact-level" id="impactLevel">IMPACT LEVEL</div>
+        
+        <div class="section">
+            <h3>💰 Hostage Funding</h3>
+            <div id="financialInfo">Select a state to see details</div>
+        </div>
+
+        <div class="section">
+            <h3>⚖️ AI Protections Under Threat</h3>
+            <div id="aiLaws">Select a state to see threatened consumer protections</div>
+        </div>
+    </div>
+
+    <script>
+        const states = [
+            {name: 'Texas', amount: 3312.6, abbr: 'TX'},
+            {name: 'California', amount: 1864.1, abbr: 'CA'},
+            {name: 'Missouri', amount: 1736.3, abbr: 'MO'},
+            {name: 'Michigan', amount: 1559.4, abbr: 'MI'},
+            {name: 'North Carolina', amount: 1533.0, abbr: 'NC'},
+            {name: 'Virginia', amount: 1481.5, abbr: 'VA'},
+            {name: 'Alabama', amount: 1401.2, abbr: 'AL'},
+            {name: 'Louisiana', amount: 1355.6, abbr: 'LA'},
+            {name: 'Georgia', amount: 1307.2, abbr: 'GA'},
+            {name: 'West Virginia', amount: 1200.0, abbr: 'WV'},
+            {name: 'Washington', amount: 1200.0, abbr: 'WA'},
+            {name: 'Mississippi', amount: 1200.0, abbr: 'MS'},
+            {name: 'Pennsylvania', amount: 1161.8, abbr: 'PA'},
+            {name: 'Arkansas', amount: 1024.0, abbr: 'AR'},
+            {name: 'Alaska', amount: 1020.0, abbr: 'AK'},
+            {name: 'Arizona', amount: 993.0, abbr: 'AZ'},
+            {name: 'Indiana', amount: 868.0, abbr: 'IN'},
+            {name: 'Colorado', amount: 826.5, abbr: 'CO'},
+            {name: 'New York', amount: 825.0, abbr: 'NY'},
+            {name: 'Tennessee', amount: 813.0, abbr: 'TN'},
+            {name: 'Oklahoma', amount: 797.0, abbr: 'OK'},
+            {name: 'Wisconsin', amount: 795.0, abbr: 'WI'},
+            {name: 'Ohio', amount: 793.0, abbr: 'OH'},
+            {name: 'Florida', amount: 773.0, abbr: 'FL'},
+            {name: 'Oregon', amount: 689.0, abbr: 'OR'},
+            {name: 'New Mexico', amount: 675.0, abbr: 'NM'},
+            {name: 'Illinois', amount: 667.0, abbr: 'IL'},
+            {name: 'Minnesota', amount: 652.0, abbr: 'MN'},
+            {name: 'Montana', amount: 628.0, abbr: 'MT'},
+            {name: 'Idaho', amount: 583.0, abbr: 'ID'},
+            {name: 'Kentucky', amount: 564.0, abbr: 'KY'},
+            {name: 'South Carolina', amount: 551.0, abbr: 'SC'},
+            {name: 'Kansas', amount: 451.0, abbr: 'KS'},
+            {name: 'Nevada', amount: 416.0, abbr: 'NV'},
+            {name: 'Iowa', amount: 415.0, abbr: 'IA'},
+            {name: 'Nebraska', amount: 405.0, abbr: 'NE'},
+            {name: 'Utah', amount: 317.0, abbr: 'UT'},
+            {name: 'Maine', amount: 272.0, abbr: 'ME'},
+            {name: 'Maryland', amount: 267.0, abbr: 'MD'},
+            {name: 'New Jersey', amount: 264.0, abbr: 'NJ'},
+            {name: 'Wyoming', amount: 246.0, abbr: 'WY'},
+            {name: 'Vermont', amount: 229.0, abbr: 'VT'},
+            {name: 'South Dakota', amount: 207.0, abbr: 'SD'},
+            {name: 'New Hampshire', amount: 196.0, abbr: 'NH'},
+            {name: 'Hawaii', amount: 149.0, abbr: 'HI'},
+            {name: 'Massachusetts', amount: 147.4, abbr: 'MA'},
+            {name: 'Connecticut', amount: 144.2, abbr: 'CT'},
+            {name: 'North Dakota', amount: 130.0, abbr: 'ND'},
+            {name: 'Rhode Island', amount: 109.0, abbr: 'RI'},
+            {name: 'Delaware', amount: 107.8, abbr: 'DE'}
+        ];
+
+        const aiLaws = {
+    "Alabama": [
+        {
+            "title": "An Act, Related to crimes and offenses...",
+            "bill": "H 161",
+            "desc": "Criminalizes creating or distributing a \"private image\", including an AI-generated or manipulated image, without consent."
+        },
+        {
+            "title": "Alabama Child Protection Act of 2024",
+            "bill": "H 168",
+            "desc": "Amends Alabama\u2019s criminal code to ensure that virtually indistinguishable AI-generated CSAM is prosecutable under existing child pornography laws. Creates private right of action for victims of CSAM."
+        },
+        {
+            "title": "An Act, Relating to Elections...",
+            "bill": "H 172",
+            "desc": "Criminal and civil liability for distributing materially deceptive media (including AI) within 90 days of an election."
+        },
+        {
+            "title": "Motor vehicles, use of motor vehicles equipped with an automated driving system",
+            "bill": "S 226",
+            "desc": "Authorizes and regulates the use of motor vehicles equipped with automated driving systems (ADS)"
+        }
+    ],
+    "Arizona": [
+        {
+            "title": "An Act Amending Title 16, Chapter 7, Article 1, Arizona Revised Statutes, by Adding Section 16-1023; Relating to Election Communications.",
+            "bill": "SB 1359",
+            "desc": "Disclosure requirement for deceptive election-related deepfakes "
+        },
+        {
+            "title": "An Act Amending Section 13-1425...",
+            "bill": "SB 1462",
+            "desc": "Criminalizes the disclosure or threatened disclosure of intimate \"realistic pictorial representations\" of a person."
+        },
+        {
+            "title": "An Act Amending section 13-3551, Arizona Revised Statutes...",
+            "bill": "HB 2678",
+            "desc": "Amends Arizona's criminal laws pertaining to CSAM to include a prohibition on AI-generated images."
+        },
+        {
+            "title": "An Act amending title 16, chapter 7, article 1, Arizona Revised Statutes, by adding section 16-1023; relating to prohibited acts.",
+            "bill": "HB 2394",
+            "desc": "Civil liability for distributing digital impersonations of a political candidate"
+        },
+        {
+            "title": "Amending Sections 9-500.42 and 11-269.22, Arizona Revised Statutes; Relating to Blockchain Technology.",
+            "bill": "H 2342",
+            "desc": "Preempts localities from regulating blockchain technology."
+        }
+    ],
+    "Arkansas": [
+        {
+            "title": "An Act to Amend the Frank Broyles Publicity Rights Protection Act of 2016...",
+            "bill": "H 1071",
+            "desc": "Protects property rights against AI-generated digital replicas."
+        },
+        {
+            "title": "An Act Regarding the Ownership of Model Training and Content Generated by a Generative Artificial Intelligence Tool; and for Other Purposes.",
+            "bill": "H 1876",
+            "desc": "Clarifies ownership rights over AI generated content and AI models."
+        },
+        {
+            "title": "An Act to Amend the Law Concerning Criminal Offenses Related to Possession of Sexually Explicit Material That Depicts a Child; to Include a Computer Generated Image That Is Indistinguishable from the Image of a Child; and for Other Purposes.",
+            "bill": "H 1877",
+            "desc": "Criminalizes AI-generated CSAM."
+        },
+        {
+            "title": "An Act to Require Public Entities to Create a Policy Concerning the Authorized Use of Artificial Intelligence; and for Other Purposes.",
+            "bill": "H 1958",
+            "desc": "Requires public entities to create AI usage policies."
+        },
+        {
+            "title": "An Act Concerning Deepfake Visual Material of a Sexual Nature...",
+            "bill": "H 1529",
+            "desc": "Criminal and civil liability for creating or distributing intimate deepfakes."
+        }
+    ],
+    "California": [
+        {
+            "title": "An act to add Section 1708.86 to the Civil Code, relating to privacy.",
+            "bill": "AB 602",
+            "desc": "Civil cause of action for victims of non-consensual intimate deepfakes"
+        },
+        {
+            "title": "Elections: deceptive audio or visual media.",
+            "bill": "AB 972",
+            "desc": "Prohibits the use of unlabeled AI deepfakes of candidates within 60 days of an election"
+        },
+        {
+            "title": "An act to amend Section 1798.140 of the Civil Code, relating to privacy.",
+            "bill": "AB 1008",
+            "desc": "Amends the CCPA's definition of \"personal information\" to specify that personal information can exist in artificial intelligence systems."
+        },
+        {
+            "title": "An act to amend Sections 311, 311.2, 311.11, and 311.12 of the Penal Code, relating to crimes.",
+            "bill": "AB 1831",
+            "desc": "Criminalizes AI generated CSAM"
+        },
+        {
+            "title": "An act to amend Section 3344.1 of the Civil Code, relating to intellectual property.",
+            "bill": "AB 1836 (2024)",
+            "desc": "Prohibits AI digital replicas of deceased persons without estate consent."
+        },
+        {
+            "title": "An act to add Title 15.2 (commencing with Section 3110) to Part 4 of Division 3 of the Civil Code, relating to artificial intelligence",
+            "bill": "AB 2013 (2024)",
+            "desc": "Requires disclosure of AI training datasets (much of this act appears to have been repealed)"
+        },
+        {
+            "title": "An act to amend Sections 84504, 84504.1, 84504.2, 84504.3, 84054.4, and 84504.5 of, and to add Section 84514 to, the Government Code, relating to the Political Reform Act of 1974.",
+            "bill": "AB 2355",
+            "desc": "Requires labeling for qualified AI-generated political advertisements."
+        },
+        {
+            "title": "An act to add Section 927 to the Labor Code, relating to employment.",
+            "bill": "AB 2602 (2024)",
+            "desc": "Protects workers from AI-generated digital replicas without proper consent"
+        },
+        {
+            "title": "An act to amend Section 35 of the Code of Civil Procedure, and to add Section 20012 to the Elections Code, relating to elections, and declaring the urgency thereof, to take effect immediately.",
+            "bill": "AB 2839",
+            "desc": "Prohibits advertisements contains certain materially deceptive content, including deepfakes, within 120 days of an election."
+        },
+        {
+            "title": "An Act to add Chapter 2.13 (commencing with Section 1339.75) to Division 2 of the Health and Safety Code, relating to health care services.",
+            "bill": "AB 3030",
+            "desc": "Requires health care facilities using AI for patient communications to include a disclaimer unless reviewed by a licensed provider."
+        },
+        {
+            "title": "California AI Transparency Act",
+            "bill": "SB 942 (2024)",
+            "desc": "Requires AI detection tools and watermarking for AI-generated content."
+        },
+        {
+            "title": "An act to amend Section 647 of the Penal Code, relating to crimes.",
+            "bill": "SB 926",
+            "desc": "Criminalizes creating and distributing AI generated intimate images without consent"
+        },
+        {
+            "title": "Sexually Explicit Digital Images",
+            "bill": "SB 981",
+            "desc": "Mandates social media platforms provide California users with a mechanism to report instances of sexually explicit digital identity theft"
+        },
+        {
+            "title": "An act to add Chapter 6 (commencing with Section 17940) to Part 3 of Division 7 of the Business and Professions Code, relating to bots.",
+            "bill": "SB 1001",
+            "desc": "Makes it unlawful for a person to use a bot with the intention of misleading and creates a presumption that undisclosed bots are intended to mislead."
+        }
+    ],
+    "Califorina": [
+        {
+            "title": "Defending Democracy from Deepfake Deception Act of 2024.",
+            "bill": "AB 2655",
+            "desc": "Requires platforms to remove deceptive AI-generated content during election windows"
+        }
+    ],
+    "Colorado": [
+        {
+            "title": "Concerning Protecting Consumers from Unfair Discrimination in Insurance Practices.",
+            "bill": "SB 21-169 (2021)",
+            "desc": "Prohibits algorithmic discrimination in insurance"
+        },
+        {
+            "title": "Concerning Consumer Protections in Interactions with Artificial Intelligence Systems.",
+            "bill": "SB 24-205 (2024)",
+            "desc": "Regulates High-Risk AI Systems to protect consumers."
+        },
+        {
+            "title": "Concerning the Use of a Deepfake in a Communication Related to a Candidate for Elective Office, and, in Connection Therewith, Requiring Disclosure, Providing for Enforcement, and Creating a Private Cause of Action for Candidates.",
+            "bill": "H 1147",
+            "desc": "Requires disclosure for deepfakes in election communications"
+        },
+        {
+            "title": "Concerning the Creation of the Artificial Intelligence Impact Task Force.",
+            "bill": "H 1468",
+            "desc": "Creates task force to study AI impacts"
+        }
+    ],
+    "Connecticut": [
+        {
+            "title": "An Act Concerning Artificial Intelligence, Automated Decision-Making and Personal Data Privacy.",
+            "bill": "SB 1103",
+            "desc": "Multiple restrictions on government procurement and use of AI"
+        },
+        {
+            "title": "An Act Authorizing and Adjusting Bonds of the State and Concerning Provisions Related to State and Municipal Tax Administration, General Government and School Building Projects.",
+            "bill": "H 5524",
+            "desc": "Appropriations for AI education tool pilot program"
+        }
+    ],
+    "Florida": [
+        {
+            "title": "An act relating to artificial intelligence use in political advertising...",
+            "bill": "H 919",
+            "desc": "Requires disclaimers for AI-generated political content"
+        },
+        {
+            "title": "An act relating to education...",
+            "bill": "H 1361",
+            "desc": "Provides grants for AI implementation in schools"
+        },
+        {
+            "title": "An act relating to advanced technology...",
+            "bill": "S 1680",
+            "desc": "Creates Government Technology Modernization Council; prohibits AI-generated CSAM"
+        },
+        {
+            "title": "An act relating to sexual images...",
+            "bill": "HB 757",
+            "desc": "Prohibitions pertaining to intimate deepfakes"
+        }
+    ],
+    "Florida ": [
+        {
+            "title": "An act relating to sexually related offenses...",
+            "bill": "SB 1798",
+            "desc": "Criminalizing computer-generated CSAM; prohibiting the promotion of altered sexual depictions."
+        }
+    ],
+    "Georgia": [
+        {
+            "title": "An act to amend Chapter 12 of Title 31 of the Official Code of Georgia Annotated...",
+            "bill": "H 203",
+            "desc": "Regulates sale of contact lenses and prescriptions using AI-enabled assessment technologies"
+        }
+    ],
+    "Idaho": [
+        {
+            "title": "An act relating to health and safety...",
+            "bill": "S 1014",
+            "desc": "Includes AI provisions for health screening"
+        }
+    ],
+    "Illinois": [
+        {
+            "title": "An act concerning regulation",
+            "bill": "H 2472",
+            "desc": "Addresses AI in medical insurance utilization review"
+        },
+        {
+            "title": "An act conderning business",
+            "bill": "H 3773",
+            "desc": "Prohibits AI bias in employment decisions"
+        },
+        {
+            "title": "Artificial Intelligence Video Interview Act",
+            "bill": "H 2557",
+            "desc": "Requires notice and consent before employers can use AI to analyze applicant-submitted videos."
+        }
+    ],
+    "Indiana": [
+        {
+            "title": "An act to amend the Indiana Code concerning trade regulation",
+            "bill": "S 5",
+            "desc": "Omnibus privacy bill"
+        },
+        {
+            "title": "An act to amend the Indiana Code concerning criminal law and procedure",
+            "bill": "S 141",
+            "desc": "Eyewitness identification procedures"
+        },
+        {
+            "title": "An act to amend the Indiana Code concerning insurance.",
+            "bill": "S 480",
+            "desc": "Requiring a \"clinical peer\" to make adverse health insurance determinations based on medical necessity "
+        }
+    ],
+    "Kansas": [
+        {
+            "title": "An act concerning technology produced by certain foreign countries.",
+            "bill": "H 2313",
+            "desc": "Prohibits the use of DeepSeek and other AI platforms controlled by countries of concern on government devices and networks."
+        }
+    ],
+    "Kentucky": [
+        {
+            "title": "AN ACT relating to protection of information and declaring an emergency.",
+            "bill": "S 4 / HB 672",
+            "desc": "Omnibus Artificial Intelligence Bill"
+        }
+    ],
+    "Maryland": [
+        {
+            "title": "Artificial Intelligence Governance Act of 2024",
+            "bill": "S 818",
+            "desc": "Requires AI policies and assessments for state government"
+        },
+        {
+            "title": "An act concerning labor and employement - use of facial recognition services - prohibition",
+            "bill": "HB 1202",
+            "desc": "Prohibits an employer from using certain facial recognition services during an applicant's interview without consent."
+        }
+    ],
+    "Minnesota": [
+        {
+            "title": "Minnesota Consumer Data Privacy Act",
+            "bill": "HF2309",
+            "desc": "Gives consumers control over their personal data "
+        }
+    ],
+    "Montana": [
+        {
+            "title": "AN ACT LIMITING THE USE OF ARTIFICIAL INTELLIGENCE SYSTEMS BY STATE AND LOCAL GOVERNMENT",
+            "bill": "H 178",
+            "desc": "Regulates state agency AI use"
+        },
+        {
+            "title": "Right to Compute Act",
+            "bill": "S 212",
+            "desc": "Regulates critical infrastructure facilities controlled by AI systems"
+        },
+        {
+            "title": "Consumer Data Privacy Act",
+            "bill": "S 384",
+            "desc": "Omnibus privacy bill"
+        }
+    ],
+    "Nevada": [
+        {
+            "title": "An Act relating to crimes; expanding certain prohibitions relating to pornography involving minors; revising the penalties for certain crimes relating to pornography involving minors; and providing other matters properly relating thereto.",
+            "bill": "S 263",
+            "desc": "Prohibits computer-generated CSAM"
+        }
+    ],
+    "New Hampshire": [
+        {
+            "title": "AN ACT relative to prohibiting certain uses of deepfakes and creating a private claim of action.",
+            "bill": "H 1432",
+            "desc": "Deepfakes - prohibits fraudulent use and creates civil action"
+        },
+        {
+            "title": "AN ACT relative to the use of artificial intelligence by state agencies.",
+            "bill": "H 1688",
+            "desc": "Prohibits discriminatory AI use by government"
+        },
+        {
+            "title": "AN ACT relative to the expectation of privacy.",
+            "bill": "SB 255",
+            "desc": "Consumer privacy bill"
+        }
+    ],
+    "New Jersey": [
+        {
+            "title": "Next New Jersey Program Act",
+            "bill": "S 3432",
+            "desc": "AI investments - creates Next New Jersey Program for AI investments"
+        },
+        {
+            "title": "AN ACT concerning online services, consumers, and personal data and supplementing Title 56 of the Revised Statutes.",
+            "bill": "S332",
+            "desc": "Consumer privacy bill"
+        }
+    ],
+    "New Mexico": [
+        {
+            "title": "AN ACT RELATING TO HEALTH...",
+            "bill": "H 178",
+            "desc": "Requires the board of nursing to promulgate rules establishing standards for the use of AI in nursing."
+        },
+        {
+            "title": "An act relating to elections",
+            "bill": "H 182",
+            "desc": "Requires disclaimers for AI-generated political content"
+        }
+    ],
+    "New York": [
+        {
+            "title": "AN ACT to amend the labor law, in relation to model management companies and model management groups...",
+            "bill": "A 2249",
+            "desc": "Requires consent before creating or altering a digital replica of a model"
+        },
+        {
+            "title": "Artificial Intelligence Deceptive Practices Act",
+            "bill": "A 8808 Part MM",
+            "desc": "Creats a right to a person's image created or altered by digitization and requires disclaimers for AI-generated political content"
+        },
+        {
+            "title": "AN ACT to amend the state technology law and the civil service law, in relation to the disclosure of automated employment decision-making tools and maintaining an artificial intelligence inventory",
+            "bill": "S 822",
+            "desc": "Regulates AI in hiring"
+        },
+        {
+            "title": "AN ACT to amend the general obligations law, in relation to contracts for the creation and use of digital replicas",
+            "bill": "S 7676",
+            "desc": "Protects against unauthorized AI replicas in contracts"
+        }
+    ],
+    "New York City": [
+        {
+            "title": "A Local Law to amend the administrative code of the city of New York, in relation to automated employment decision tools",
+            "bill": "Local Law 144",
+            "desc": "Creates requirements governing the use of automated employment decision tools"
+        }
+    ],
+    "North Carolina": [
+        {
+            "title": "AN ACT TO ESTABLISH SEXUAL EXTORTION OFFENSES",
+            "bill": "H 591",
+            "desc": "Criminalizes AI-generated csam and includes civil penalties"
+        }
+    ],
+    "North Dakota": [
+        {
+            "title": "An Act to create and enact a new section to chapter 15-18.1 of the North Dakota Century Code, relating to the national council for state authorization reciprocity agreements membership",
+            "bill": "H 1064",
+            "desc": "Clarifying that \"Person\" does not include artificial intelligence for the purposes of postsecondary education institution minimum standards"
+        },
+        {
+            "title": "An Act to create and enact a new section to chapter 16.1-10 of the North Dakota Century Code, relating to artificial intelligence disclosure statements.",
+            "bill": "H 1167",
+            "desc": "Requires disclaimers for AI-generated political content"
+        },
+        {
+            "title": "An Act to amend and reenact sections 29-29.4-01, 29-29.4-02, 29-29.4-03, 29-29.4-04, 29-29.4-05, and 29-29.4-06 of the North Dakota Century Code, relating to law enforcement use of a robot.",
+            "bill": "H 1613",
+            "desc": "Law enforcement use of drones or robots - regulates AI in law enforcement"
+        }
+    ],
+    "Oregon": [
+        {
+            "title": "AN ACT Relating to the use of artificial intelligence in campaign communications...",
+            "bill": "S 1571",
+            "desc": "Requires disclosure for AI-generated media in electoral campaigns"
+        },
+        {
+            "title": "Oregon Consumer Privacy Act",
+            "bill": "S 619",
+            "desc": "Omnibus privacy bill"
+        }
+    ],
+    "South Dakota": [
+        {
+            "title": "An Act to prohibit the use of a deepfake to influence an election and to provide a penalty therefor.",
+            "bill": "S 164",
+            "desc": "Requires labeling for election-related deepfakes"
+        }
+    ],
+    "Tennessee": [
+        {
+            "title": "An Act to amend Tennessee Code Annotated, Title 39 and Title 40, relative to the sexual exploitation of children.",
+            "bill": "HB 2163 / SB 2668",
+            "desc": "Criminalizes AI CSAM"
+        },
+        {
+            "title": "An Act to amend Tennessee Code Annotated, Title 39 relative to criminal offenses",
+            "bill": "H 0769 / S 0741",
+            "desc": "Criminalizes the knowing possession, distribution, or production of technology designed for creating CSAM"
+        },
+        {
+            "title": "Preventing Deepfake Images Act.",
+            "bill": "HB 1299 / SB 1346",
+            "desc": "Civil cause of action for an individual who is the subject of an intimate deepfake disclosed without consent."
+        },
+        {
+            "title": "An Act to amend Tennessee Code Annotated, Title 49, relative to artificial intelligence.",
+            "bill": "S 1711",
+            "desc": "AI technology use by students - requires policies for AI use in education"
+        },
+        {
+            "title": "Tennessee Information Protection Act",
+            "bill": "HB 1181 / SB 73",
+            "desc": "Comprehensive data privacy bill"
+        },
+        {
+            "title": "Ensuring Likeness, Voice, and Image Security Act of 2024 (ELVIS Act)",
+            "bill": "HB 2091",
+            "desc": "Protects publicity rights"
+        }
+    ],
+    "Texas": [
+        {
+            "title": "An Act relating to the creation of a criminal offense for fabricating a deceptive video with intent to influence the outcome of an election.",
+            "bill": "SB 751",
+            "desc": "Prohibiting election-related deepfakes"
+        },
+        {
+            "title": "An Act relating to the unlawful production or distribution of sexually explicit videos using deep fake technology...",
+            "bill": "SB 1361",
+            "desc": "Prohibiting non-consensual intimate deepfakes"
+        },
+        {
+            "title": "An Act relating to prosecution of certain criminal offenses prohibiting sexually explicit visual material involving children.",
+            "bill": "HB 2700",
+            "desc": "Prohibiting computer-generated CSAM"
+        },
+        {
+            "title": "Relating to the creation of the artificial intelligence advisory council.",
+            "bill": "H 2060",
+            "desc": "AI Advisory Council - creates council to study AI in state agencies"
+        },
+        {
+            "title": "Congratulating the Canyon High School FFA Ag Issues Team on winning first place in the 2024 Texas FFA State Agricultural Issues Forum.",
+            "bill": "HCR 53",
+            "desc": "Congratulatory resolution recognizing AI education achievements"
+        },
+        {
+            "title": "Adopting the House Rules of Procedure for the 88th Legislature",
+            "bill": "HR 4",
+            "desc": "House rules including AI provisions"
+        },
+        {
+            "title": "Texas Data Privacy and Security Act",
+            "bill": "HB 4",
+            "desc": "Omnibus privacy bill"
+        }
+    ],
+    "Utah": [
+        {
+            "title": "Artificial Pornographic Images Amendments",
+            "bill": "HB 148",
+            "desc": "Clarifying that certain prohibited materials include computer-generated videos"
+        },
+        {
+            "title": "Intimate Image Distribution Prohibition",
+            "bill": "HB 193",
+            "desc": "Criminalizing the distribution of counterfeit intimate images"
+        },
+        {
+            "title": "Artificial Intelligence Amendments",
+            "bill": "HB 452",
+            "desc": "Regulates AI mental health chatbots"
+        },
+        {
+            "title": "Sexual Exploitation of a Minor Amendments",
+            "bill": "HB 238",
+            "desc": "Amends the definition of CSAM to include AI generated material"
+        },
+        {
+            "title": "Utah Legal Personhood Amendments",
+            "bill": "H 249",
+            "desc": "Clarifies AI cannot have legal personhood"
+        },
+        {
+            "title": "Criminal Justice Amendments",
+            "bill": "H 366",
+            "desc": "Restricts sole reliance on AI in criminal justice decisions"
+        },
+        {
+            "title": "Criminal Offense Amendments",
+            "bill": "S 66",
+            "desc": "Amends the definition of counterfeit intimate image to include generated images."
+        },
+        {
+            "title": "Information Technology Act Amendments",
+            "bill": "S 131",
+            "desc": "Requires disclosure for AI-generated political communications "
+        },
+        {
+            "title": "Artificial Intelligence Policy Act",
+            "bill": "S 149",
+            "desc": "AI Policy Act - comprehensive AI governance framework"
+        },
+        {
+            "title": "Artificial Intelligence Consumer Protection Amendments",
+            "bill": "S 226",
+            "desc": "Regulates the use of AI in consumer transactions and regulated services"
+        },
+        {
+            "title": "Unauthorized Artificial Intelligence Impersonation Amendments",
+            "bill": "S 271",
+            "desc": "Modifies provisions relating to the unauthorized use of an individual's personal 6 identity, including use through artificial intelligence technology"
+        }
+    ],
+    "Virginia": [
+        {
+            "title": "VA Longitudinal Data System & VA Workforce Data Trust; work group to review current capabilities",
+            "bill": "H 1083",
+            "desc": "Office of Education Economics - includes AI provisions for education data"
+        },
+        {
+            "title": "An Act to amend the Code of Virginia by adding in Title 19.2 a chapter numbered 1.3, consisting of a section numbered 19.2-11.14, relating to use of artificial intelligence-based tool.",
+            "bill": "H 1642",
+            "desc": "Regulates AI use in criminal justice"
+        },
+        {
+            "title": "Hospitals and nursing homes; licensure and inspection fees",
+            "bill": "H 2255, H 2269",
+            "desc": "Regulates the use of AI \"intelligent personal assistants\" in healthcare settings."
+        },
+        {
+            "title": "Advanced registered medication aides; administration of drugs",
+            "bill": "H 2468, H 2742",
+            "desc": "Healthcare AI provisions"
+        },
+        {
+            "title": "Custodial interrogations; false statements to a child prohibited, inauthentic replica documents",
+            "bill": "H 2692",
+            "desc": "Prohibits the use of false AI-generated documents during custodial interrogation."
+        },
+        {
+            "title": "Artificial intelligence by public bodies; Joint Commission on Technology & Science to examine use",
+            "bill": "S 487",
+            "desc": "Use of AI by public bodies - requires study and analysis of government AI use"
+        },
+        {
+            "title": "Budget Bill.",
+            "bill": "H 6001",
+            "desc": "General Assembly budget including AI technology provisions"
+        },
+        {
+            "title": "Virginia Consumer Data Protection Act",
+            "bill": "SB1392",
+            "desc": "Omnibus privacy bill"
+        }
+    ],
+    "Washington": [
+        {
+            "title": "Establishing an artificial intelligence task force",
+            "bill": "S 5838",
+            "desc": "AI task force - establishes comprehensive AI assessment task force"
+        },
+        {
+            "title": "Making 2023-2025 fiscal biennium supplemental operating appropriations",
+            "bill": "S 5950",
+            "desc": "Supplemental appropriations including AI training and incubation funding"
+        }
+    ],
+    "West Virginia": [
+        {
+            "title": "Certified Microgrid Program",
+            "bill": "H 2014",
+            "desc": "Certified microgrid development program - includes AI provisions"
+        },
+        {
+            "title": "To provide and change graduation requirements and change duties relating to academic content standards",
+            "bill": "H 2411",
+            "desc": "Graduation requirements - includes AI education components"
+        },
+        {
+            "title": "Relating to the West Virginia Task Force on Artificial Intelligence",
+            "bill": "H 3187",
+            "desc": "Task Force on AI - creates state AI task force"
+        },
+        {
+            "title": "Prohibiting creation, production, distribution, or possession of artificially generated child pornography",
+            "bill": "S 198",
+            "desc": "Crimes against chastity, morality and decency - includes AI-generated content"
+        }
+    ],
+    "Wisconsin": [
+        {
+            "title": "An Act to amend 11.1303 (title); and to create 11.1303 (2m) of the statutes...",
+            "bill": "A 664",
+            "desc": "Requires disclosure of AI-generated political content"
+        },
+        {
+            "title": "An Act to amend 939.617 (2) (b); and to create 948.12 (4) of the statutes; relating to: possession of child pornography and providing a penalty.",
+            "bill": "S 314",
+            "desc": "Criminalizes computer-generated CSAM"
+        }
+    ],
+    "Wyoming": [
+        {
+            "title": "An Act relating to crimes and offenses...",
+            "bill": "H 85",
+            "desc": "Criminalizes computer-generated CSAM"
+        },
+        {
+            "title": "General government appropriations",
+            "bill": "H 1",
+            "desc": "General government appropriations - includes AI expertise funding"
+        }
+    ]
+}
+
+        function getImpactClass(amount) {
+            if (amount >= 1500) return 'massive-impact';
+            if (amount >= 500) return 'major-impact';
+            return 'notable-impact';
+        }
+
+        function getImpactText(amount) {
+            if (amount >= 1500) return 'MASSIVE IMPACT';
+            if (amount >= 500) return 'MAJOR IMPACT';
+            return 'NOTABLE IMPACT';
+        }
+
+        function getImpactColor(amount) {
+            if (amount >= 1500) return '#991b1b';
+            if (amount >= 500) return '#1e293b';
+            return '#3b82f6';
+        }
+
+        function createMap() {
+            const grid = document.getElementById('stateGrid');
+            
+            states.forEach(state => {
+                const tile = document.createElement('div');
+                tile.className = `state-tile ${getImpactClass(state.amount)}`;
+                tile.textContent = state.abbr;
+                tile.title = `${state.name}: ${state.amount}M at risk`;
+                tile.onclick = () => showStateInfo(state);
+                grid.appendChild(tile);
+            });
+        }
+
+        function showStateInfo(state) {
+            // Hide the right panel content
+            document.getElementById('rightPanel').style.display = 'none';
+            
+            document.getElementById('stateName').textContent = state.name;
+            document.getElementById('fundingAmount').textContent = `${state.amount.toFixed(1)}M Hostage Funding`;
+            document.getElementById('fundingAmount').style.color = '#ffffff';
+            
+            const impactEl = document.getElementById('impactLevel');
+            impactEl.textContent = getImpactText(state.amount);
+            impactEl.style.color = getImpactColor(state.amount);
+            impactEl.style.backgroundColor = getImpactColor(state.amount) + '20';
+            impactEl.style.border = `1px solid ${getImpactColor(state.amount)}40`;
+
+            document.getElementById('financialInfo').innerHTML = `
+                <p><strong>BEAD Allocation:</strong> ${state.amount.toFixed(1)} million in federal broadband funding</p>
+                <p><strong>The Threat:</strong> ${state.name} loses this funding if it regulates AI to protect consumers</p>
+                <p><strong>Rural Impact:</strong> Critical broadband infrastructure for underserved communities</p>
+            `;
+
+            const stateLaws = aiLaws[state.name] || [];
+            if (stateLaws.length > 0) {
+                document.getElementById('aiLaws').innerHTML = stateLaws.map(law => `
+                    <div class="ai-law">
+                        <div class="law-title">${law.title}</div>
+                        <div class="law-bill">${law.bill}</div>
+                        <div class="law-description">${law.desc}</div>
+                    </div>
+                `).join('');
+            } else {
+                document.getElementById('aiLaws').innerHTML = `
+                    <p><strong>Consumer protections at risk:</strong> ${state.name} has enacted or is considering AI consumer protection legislation that would be eliminated by the federal moratorium.</p>
+                    <p><em>Over 232 state AI laws nationwide could be wiped out, leaving consumers defenseless against Big Tech AI abuse.</em></p>
+                `;
+            }
+
+            document.getElementById('infoPanel').classList.add('open');
+        }
+
+        function closePanel() {
+            document.getElementById('rightPanel').style.display = 'flex';
+            document.getElementById('infoPanel').classList.remove('open');
+        }
+
+        createMap();
+        
+        document.getElementById('petitionBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.open('https://ari.us/campaign/tell-congress-dont-erase-ai-safeguards/', '_blank');
+        });
+    </script>
+</body>
+</html>
