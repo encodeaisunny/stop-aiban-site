@@ -1531,20 +1531,20 @@
 }
 
         function getImpactClass(amount) {
-            if (amount >= 1500) return 'massive-impact';
-            if (amount >= 500) return 'major-impact';
+            if (amount >= 500) return 'massive-impact';
+            if (amount >= 200) return 'major-impact';
             return 'notable-impact';
         }
 
         function getImpactText(amount) {
-            if (amount >= 1500) return 'MASSIVE IMPACT';
-            if (amount >= 500) return 'MAJOR IMPACT';
+            if (amount >= 500) return 'MASSIVE IMPACT';
+            if (amount >= 200) return 'MAJOR IMPACT';
             return 'NOTABLE IMPACT';
         }
 
         function getImpactColor(amount) {
-            if (amount >= 1500) return '#991b1b';
-            if (amount >= 500) return '#1e293b';
+            if (amount >= 500) return '#991b1b';
+            if (amount >= 200) return '#1e293b';
             return '#3b82f6';
         }
 
