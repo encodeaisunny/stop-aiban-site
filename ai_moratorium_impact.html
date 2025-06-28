@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Moratorium Impact Analysis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 2.2em;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .filter-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .filter-container label {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .party-filters {
+            display: flex;
+            gap: 10px;
+        }
+
+        .party-filter {
+            padding: 8px 16px;
+            border: 2px solid transparent;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .party-filter.republican {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+        }
+
+        .party-filter.democratic {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+        }
+
+        .party-filter.swing {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            color: white;
+        }
+
+        .party-filter.inactive {
+            opacity: 0.3;
+            transform: scale(0.9);
+        }
+
+        .party-filter:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .chart-container {
+            position: relative;
+            height: 600px;
+            background: #fff;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .state-bubble {
+            position: absolute;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .state-bubble:hover {
+            transform: scale(1.2);
+            z-index: 10;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .state-bubble.republican {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+        }
+
+        .state-bubble.democratic {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+        }
+
+        .state-bubble.swing {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            color: white;
+        }
+
+        .state-bubble.dimmed {
+            opacity: 0.2;
+            transform: scale(0.8);
+        }
+
+        .axes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+        }
+
+        .axis-line {
+            position: absolute;
+            background: #bdc3c7;
+        }
+
+        .x-axis {
+            bottom: 60px;
+            left: 80px;
+            right: 30px;
+            height: 2px;
+        }
+
+        .y-axis {
+            left: 80px;
+            top: 30px;
+            bottom: 60px;
+            width: 2px;
+        }
+
+        .axis-label {
+            position: absolute;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 14px;
+        }
+
+        .x-label {
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .y-label {
+            left: 25px;
+            top: 50%;
+            transform: translateY(-50%) rotate(-90deg);
+            transform-origin: center;
+        }
+
+        .grid-lines {
+            position: absolute;
+            top: 30px;
+            left: 80px;
+            right: 30px;
+            bottom: 60px;
+            pointer-events: none;
+        }
+
+        .grid-line {
+            position: absolute;
+            background: #ecf0f1;
+        }
+
+        .grid-line.vertical {
+            width: 1px;
+            height: 100%;
+        }
+
+        .grid-line.horizontal {
+            height: 1px;
+            width: 100%;
+        }
+
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .legend-item:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .republican { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+        .democratic { background: linear-gradient(135deg, #3498db, #2980b9); }
+        .swing { background: linear-gradient(135deg, #9b59b6, #8e44ad); }
+
+        .insights {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        .insights h3 {
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .insights p {
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .tooltip {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            pointer-events: none;
+            z-index: 1000;
+            display: none;
+            max-width: 250px;
+            line-height: 1.4;
+        }
+
+        .data-source {
+            text-align: center;
+            font-size: 0.9em;
+            color: #7f8c8d;
+            margin-top: 15px;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 20px; }
+            h1 { font-size: 1.8em; }
+            .controls { flex-direction: column; align-items: center; }
+            .chart-container { height: 500px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AI Moratorium: Who Can Afford to Resist?</h1>
+        <p class="subtitle">Interactive analysis of how the AI moratorium disproportionately affects conservative states</p>
+        
+        <div class="controls">
+            <div class="filter-container">
+                <label>Filter by Political Lean</label>
+                <div class="party-filters">
+                    <div class="party-filter republican" data-party="republican">Republican</div>
+                    <div class="party-filter democratic" data-party="democratic">Democratic</div>
+                    <div class="party-filter swing" data-party="swing">Swing</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item" data-party="republican">
+                <div class="legend-color republican"></div>
+                <span>Republican-leaning states</span>
+            </div>
+            <div class="legend-item" data-party="democratic">
+                <div class="legend-color democratic"></div>
+                <span>Democratic-leaning states</span>
+            </div>
+            <div class="legend-item" data-party="swing">
+                <div class="legend-color swing"></div>
+                <span>Swing states</span>
+            </div>
+        </div>
+
+        <div class="chart-container" id="chartContainer">
+            <div class="grid-lines" id="gridLines"></div>
+            <div class="axes">
+                <div class="axis-line x-axis"></div>
+                <div class="axis-line y-axis"></div>
+                <div class="axis-label x-label">State Annual Budget (Billions $)</div>
+                <div class="axis-label y-label">BEAD Funding as % of Budget</div>
+            </div>
+        </div>
+
+        <div class="insights">
+            <h3>Key Insight: The Moratorium Paradox</h3>
+            <p><strong>California (Budget: $325B, BEAD: 0.05%)</strong> can easily forgo BEAD funds and maintain aggressive AI regulation.</p>
+            <p><strong>Smaller conservative states</strong> with budgets under $20B and BEAD funding representing 5-16% of their budgets face an impossible choice: accept federal funding and surrender regulatory autonomy, or maintain state sovereignty while losing critical infrastructure investment.</p>
+            <p><strong>Result:</strong> Progressive states get to impose AI rules nationally through market effects, while conservative states are blocked from implementing balanced, locally-appropriate protections.</p>
+        </div>
+
+        <p class="data-source">Based on most recent state budget data and BEAD funding allocations</p>
+
+        <div class="tooltip" id="tooltip"></div>
+    </div>
+
+    <script>
+        // State data with political leanings - embedded data from CSV
+        let activeFilters = new Set(['republican', 'democratic', 'swing']);
+
+        const rawStateData = [
+            { state: 'Alabama', budget: 12.69, beadFunding: 1.401222, beadPercent: 11.04 },
+            { state: 'Alaska', budget: 8.27, beadFunding: 1.01714, beadPercent: 12.30 },
+            { state: 'Arizona', budget: 17.89, beadFunding: 0.993563, beadPercent: 5.55 },
+            { state: 'Arkansas', budget: 6.31, beadFunding: 1.024304, beadPercent: 16.23 },
+            { state: 'California', budget: 324.69, beadFunding: 1.864132, beadPercent: 0.57 },
+            { state: 'Colorado', budget: 13.96, beadFunding: 0.826477, beadPercent: 5.92 },
+            { state: 'Connecticut', budget: 24.19, beadFunding: 0.228559, beadPercent: 0.94 },
+            { state: 'Delaware', budget: 5.19, beadFunding: 0.107734, beadPercent: 2.08 },
+            { state: 'Florida', budget: 116.5, beadFunding: 1.168704, beadPercent: 1.00 },
+            { state: 'Georgia', budget: 32.55, beadFunding: 1.307066, beadPercent: 4.02 },
+            { state: 'Hawaii', budget: 16.78, beadFunding: 0.149187, beadPercent: 0.89 },
+            { state: 'Idaho', budget: 5.26, beadFunding: 0.583256, beadPercent: 11.09 },
+            { state: 'Illinois', budget: 95.5, beadFunding: 1.038415, beadPercent: 1.09 },
+            { state: 'Indiana', budget: 18.04, beadFunding: 0.868052, beadPercent: 4.81 },
+            { state: 'Iowa', budget: 8.31, beadFunding: 0.415347, beadPercent: 5.00 },
+            { state: 'Kansas', budget: 8.20, beadFunding: 0.451925, beadPercent: 5.51 },
+            { state: 'Kentucky', budget: 13.56, beadFunding: 0.797815, beadPercent: 5.88 },
+            { state: 'Louisiana', budget: 12.44, beadFunding: 1.355554, beadPercent: 10.90 },
+            { state: 'Maine', budget: 4.46, beadFunding: 0.272045, beadPercent: 6.10 },
+            { state: 'Maryland', budget: 47.92, beadFunding: 0.267768, beadPercent: 0.56 },
+            { state: 'Massachusetts', budget: 55.99, beadFunding: 0.147403, beadPercent: 0.26 },
+            { state: 'Michigan', budget: 76.01, beadFunding: 1.055512, beadPercent: 1.39 },
+            { state: 'Minnesota', budget: 52.8, beadFunding: 0.651835, beadPercent: 1.23 },
+            { state: 'Mississippi', budget: 7.3, beadFunding: 1.203562, beadPercent: 16.49 },
+            { state: 'Missouri', budget: 12.9, beadFunding: 1.738445, beadPercent: 13.48 },
+            { state: 'Montana', budget: 2.91, beadFunding: 0.628184, beadPercent: 21.58 },
+            { state: 'Nebraska', budget: 5.24, beadFunding: 0.405853, beadPercent: 7.74 },
+            { state: 'Nevada', budget: 11.03, beadFunding: 0.416464, beadPercent: 3.78 },
+            { state: 'New Hampshire', budget: 6.10, beadFunding: 0.196449, beadPercent: 3.22 },
+            { state: 'New Jersey', budget: 54.32, beadFunding: 0.263705, beadPercent: 0.49 },
+            { state: 'New Mexico', budget: 8.79, beadFunding: 0.675176, beadPercent: 7.68 },
+            { state: 'New York', budget: 229.0, beadFunding: 0.664617, beadPercent: 0.29 },
+            { state: 'North Carolina', budget: 29.75, beadFunding: 1.537705, beadPercent: 5.17 },
+            { state: 'North Dakota', budget: 4.77, beadFunding: 0.130185, beadPercent: 2.73 },
+            { state: 'Ohio', budget: 86.2, beadFunding: 0.793471, beadPercent: 0.92 },
+            { state: 'Oklahoma', budget: 9.26, beadFunding: 0.797203, beadPercent: 8.61 },
+            { state: 'Oregon', budget: 27.4, beadFunding: 0.688738, beadPercent: 2.51 },
+            { state: 'Pennsylvania', budget: 45.79, beadFunding: 1.161479, beadPercent: 2.54 },
+            { state: 'Rhode Island', budget: 13.79, beadFunding: 0.108855, beadPercent: 0.79 },
+            { state: 'South Carolina', budget: 12.99, beadFunding: 0.551669, beadPercent: 4.25 },
+            { state: 'South Dakota', budget: 2.00, beadFunding: 0.207095, beadPercent: 10.35 },
+            { state: 'Tennessee', budget: 20.84, beadFunding: 0.813404, beadPercent: 3.90 },
+            { state: 'Texas', budget: 133.0, beadFunding: 3.312715, beadPercent: 2.49 },
+            { state: 'Utah', budget: 9.65, beadFunding: 0.317801, beadPercent: 3.29 },
+            { state: 'Vermont', budget: 8.19, beadFunding: 0.228964, beadPercent: 2.79 },
+            { state: 'Virginia', budget: 30.75, beadFunding: 0.719734, beadPercent: 2.34 },
+            { state: 'Washington', budget: 69.77, beadFunding: 0.826089, beadPercent: 1.18 },
+            { state: 'West Virginia', budget: 5.07, beadFunding: 0.720286, beadPercent: 14.21 },
+            { state: 'Wisconsin', budget: 44.31, beadFunding: 1.05529, beadPercent: 2.38 },
+            { state: 'Wyoming', budget: 2.77, beadFunding: 0.3487, beadPercent: 12.59 }
+        ];
+
+        function loadData() {
+            const republicanStates = ['Alabama', 'Alaska', 'Arkansas', 'Florida', 'Idaho', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'North Dakota', 'Ohio', 'Oklahoma', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'West Virginia', 'Wyoming'];
+            const democraticStates = ['California', 'Connecticut', 'Delaware', 'Hawaii', 'Illinois', 'Maine', 'Maryland', 'Massachusetts', 'New Jersey', 'New York', 'Oregon', 'Rhode Island', 'Vermont', 'Washington'];
+            
+            const stateData = rawStateData.map(state => {
+                let lean = 'swing';
+                if (republicanStates.includes(state.state)) {
+                    lean = 'republican';
+                } else if (democraticStates.includes(state.state)) {
+                    lean = 'democratic';
+                }
+                
+                return {
+                    name: state.state,
+                    abbr: getStateAbbreviation(state.state),
+                    budget: state.budget,
+                    beadFunding: state.beadFunding,
+                    beadPercent: state.beadPercent,
+                    lean: lean
+                };
+            });
+            
+            return stateData;
+        }
+
+        function getStateAbbreviation(stateName) {
+            const stateAbbreviations = {
+                'Alabama': 'AL', 'Alaska': 'AK', 'Arizona': 'AZ', 'Arkansas': 'AR', 'California': 'CA',
+                'Colorado': 'CO', 'Connecticut': 'CT', 'Delaware': 'DE', 'Florida': 'FL', 'Georgia': 'GA',
+                'Hawaii': 'HI', 'Idaho': 'ID', 'Illinois': 'IL', 'Indiana': 'IN', 'Iowa': 'IA',
+                'Kansas': 'KS', 'Kentucky': 'KY', 'Louisiana': 'LA', 'Maine': 'ME', 'Maryland': 'MD',
+                'Massachusetts': 'MA', 'Michigan': 'MI', 'Minnesota': 'MN', 'Mississippi': 'MS', 'Missouri': 'MO',
+                'Montana': 'MT', 'Nebraska': 'NE', 'Nevada': 'NV', 'New Hampshire': 'NH', 'New Jersey': 'NJ',
+                'New Mexico': 'NM', 'New York': 'NY', 'North Carolina': 'NC', 'North Dakota': 'ND', 'Ohio': 'OH',
+                'Oklahoma': 'OK', 'Oregon': 'OR', 'Pennsylvania': 'PA', 'Rhode Island': 'RI', 'South Carolina': 'SC',
+                'South Dakota': 'SD', 'Tennessee': 'TN', 'Texas': 'TX', 'Utah': 'UT', 'Vermont': 'VT',
+                'Virginia': 'VA', 'Washington': 'WA', 'West Virginia': 'WV', 'Wisconsin': 'WI', 'Wyoming': 'WY'
+            };
+            return stateAbbreviations[stateName] || stateName.substring(0, 2).toUpperCase();
+        }
+
+        function updateChart() {
+            const stateData = loadData();
+            const container = document.getElementById('chartContainer');
+            
+            // Clear existing bubbles
+            const existingBubbles = container.querySelectorAll('.state-bubble');
+            existingBubbles.forEach(bubble => bubble.remove());
+            
+            const containerRect = container.getBoundingClientRect();
+            const chartWidth = containerRect.width - 110;
+            const chartHeight = containerRect.height - 90;
+            
+            // Find data ranges
+            const maxBudget = Math.max(...stateData.map(s => s.budget));
+            const maxBeadPercent = Math.max(...stateData.map(s => s.beadPercent));
+            
+            stateData.forEach(state => {
+                const bubble = document.createElement('div');
+                bubble.className = `state-bubble ${state.lean}`;
+                bubble.textContent = state.abbr;
+                
+                // Calculate position (log scale for budget to better show the spread)
+                const x = 80 + (Math.log(state.budget + 1) / Math.log(maxBudget + 1)) * chartWidth;
+                const y = chartHeight + 30 - (state.beadPercent / maxBeadPercent) * chartHeight;
+                
+                // Calculate size based on BEAD dependency
+                const size = Math.max(25, Math.min(70, 25 + state.beadPercent * 2.5));
+                
+                bubble.style.left = `${x - size/2}px`;
+                bubble.style.top = `${y - size/2}px`;
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+                bubble.style.fontSize = `${Math.max(10, size * 0.18)}px`;
+                
+                // Apply filter
+                if (!activeFilters.has(state.lean)) {
+                    bubble.classList.add('dimmed');
+                }
+                
+                // Add tooltip
+                bubble.addEventListener('mouseenter', (e) => {
+                    const tooltip = document.getElementById('tooltip');
+                    const affordability = state.beadPercent < 2 ? 'Can easily afford to resist' : 
+                                        state.beadPercent < 5 ? 'Moderate pressure to comply' : 
+                                        state.beadPercent < 10 ? 'High pressure to comply' :
+                                        'Extreme pressure to comply';
+                    
+                    const politicalLean = state.lean.charAt(0).toUpperCase() + state.lean.slice(1);
+                    
+                    tooltip.innerHTML = `
+                        <strong>${state.name}</strong><br>
+                        <strong>Political lean:</strong> ${politicalLean}<br>
+                        <strong>Annual Budget:</strong> $${state.budget.toFixed(1)}B<br>
+                        <strong>BEAD Funding:</strong> $${state.beadFunding.toFixed(2)}B<br>
+                        <strong>BEAD as % of Budget:</strong> ${state.beadPercent.toFixed(1)}%<br>
+                        <em>${affordability}</em>
+                    `;
+                    tooltip.style.display = 'block';
+                    tooltip.style.left = `${e.pageX + 10}px`;
+                    tooltip.style.top = `${e.pageY - 10}px`;
+                });
+                
+                bubble.addEventListener('mouseleave', () => {
+                    document.getElementById('tooltip').style.display = 'none';
+                });
+                
+                container.appendChild(bubble);
+            });
+            
+            // Create grid lines
+            createGridLines();
+        }
+
+        function createGridLines() {
+            const stateData = loadData();
+            const gridContainer = document.getElementById('gridLines');
+            gridContainer.innerHTML = '';
+            
+            // Vertical grid lines (budget)
+            const budgetTicks = [1, 5, 10, 25, 50, 100, 200];
+            const maxBudget = Math.max(...stateData.map(s => s.budget));
+            const chartWidth = gridContainer.parentElement.getBoundingClientRect().width - 110;
+            
+            budgetTicks.forEach(tick => {
+                if (tick <= maxBudget) {
+                    const x = (Math.log(tick + 1) / Math.log(maxBudget + 1)) * chartWidth;
+                    const line = document.createElement('div');
+                    line.className = 'grid-line vertical';
+                    line.style.left = `${x}px`;
+                    gridContainer.appendChild(line);
+                }
+            });
+            
+            // Horizontal grid lines (percentage)
+            const percentTicks = [0, 5, 10, 15, 20];
+            const maxPercent = Math.max(...stateData.map(s => s.beadPercent));
+            const chartHeight = gridContainer.parentElement.getBoundingClientRect().height - 90;
+            
+            percentTicks.forEach(tick => {
+                if (tick <= maxPercent) {
+                    const y = chartHeight - (tick / maxPercent) * chartHeight;
+                    const line = document.createElement('div');
+                    line.className = 'grid-line horizontal';
+                    line.style.top = `${y}px`;
+                    gridContainer.appendChild(line);
+                }
+            });
+        }
+
+        // Filter functionality
+        document.querySelectorAll('.party-filter, .legend-item').forEach(filter => {
+            filter.addEventListener('click', () => {
+                const party = filter.dataset.party;
+                
+                if (activeFilters.has(party)) {
+                    activeFilters.delete(party);
+                } else {
+                    activeFilters.add(party);
+                }
+                
+                // Update filter button states
+                document.querySelectorAll('.party-filter').forEach(btn => {
+                    if (activeFilters.has(btn.dataset.party)) {
+                        btn.classList.remove('inactive');
+                    } else {
+                        btn.classList.add('inactive');
+                    }
+                });
+                
+                updateChart();
+            });
+        });
+
+        // Load data when page loads
+        updateChart();
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            setTimeout(updateChart, 100);
+        });
+    </script>
+</body>
+</html>
