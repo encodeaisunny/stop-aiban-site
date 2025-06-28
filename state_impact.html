@@ -305,10 +305,135 @@
         }
 
         @media (max-width: 768px) {
-            .container { padding: 20px; }
-            h1 { font-size: 1.8em; }
-            .controls { flex-direction: column; align-items: center; }
-            .chart-container { height: 500px; }
+            body { padding: 10px; }
+            .container { 
+                padding: 15px; 
+                border-radius: 15px;
+            }
+            
+            h1 { 
+                font-size: 1.6em; 
+                margin-bottom: 8px;
+                line-height: 1.2;
+            }
+            
+            .subtitle {
+                font-size: 1em;
+                margin-bottom: 20px;
+            }
+            
+            .controls { 
+                flex-direction: column; 
+                align-items: center; 
+                gap: 15px;
+                margin-bottom: 20px;
+            }
+            
+            .filter-container {
+                padding: 12px;
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .party-filters {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+            }
+            
+            .party-filter {
+                padding: 6px 12px;
+                font-size: 14px;
+            }
+            
+            .chart-container { 
+                height: 400px;
+                margin-bottom: 20px;
+            }
+            
+            .legend {
+                flex-direction: column;
+                gap: 10px;
+                margin-bottom: 15px;
+                text-align: center;
+            }
+            
+            .legend-item {
+                justify-content: center;
+                font-size: 14px;
+            }
+            
+            .state-bubble {
+                font-size: 10px;
+                min-width: 20px;
+                min-height: 20px;
+            }
+            
+            .x-axis {
+                left: 60px;
+                right: 20px;
+                bottom: 40px;
+            }
+            
+            .y-axis {
+                left: 60px;
+                top: 20px;
+                bottom: 40px;
+            }
+            
+            .x-label {
+                bottom: 10px;
+                font-size: 12px;
+            }
+            
+            .y-label {
+                left: 15px;
+                font-size: 12px;
+            }
+            
+            .grid-lines {
+                left: 60px;
+                right: 20px;
+                bottom: 40px;
+                top: 20px;
+            }
+            
+            .insights {
+                padding: 20px;
+                margin-top: 15px;
+            }
+            
+            .insights h3 {
+                font-size: 1.2em;
+                margin-bottom: 12px;
+            }
+            
+            .insights p {
+                font-size: 14px;
+                line-height: 1.5;
+            }
+            
+            .tooltip {
+                font-size: 12px;
+                padding: 8px;
+                max-width: 200px;
+            }
+            
+            .data-source {
+                font-size: 0.8em;
+                margin-top: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 10px; }
+            h1 { font-size: 1.4em; }
+            .subtitle { font-size: 0.9em; }
+            .chart-container { height: 350px; }
+            .party-filter { padding: 5px 10px; font-size: 13px; }
+            .insights { padding: 15px; }
+            .insights h3 { font-size: 1.1em; }
+            .insights p { font-size: 13px; }
         }
     </style>
 </head>
@@ -472,8 +597,9 @@
             existingBubbles.forEach(bubble => bubble.remove());
             
             const containerRect = container.getBoundingClientRect();
-            const chartWidth = containerRect.width - 110;
-            const chartHeight = containerRect.height - 90;
+            const isMobile = window.innerWidth <= 768;
+            const chartWidth = containerRect.width - (isMobile ? 80 : 110);
+            const chartHeight = containerRect.height - (isMobile ? 60 : 90);
             
             // Find data ranges
             const maxBudget = Math.max(...stateData.map(s => s.budget));
@@ -485,17 +611,20 @@
                 bubble.textContent = state.abbr;
                 
                 // Calculate position (log scale for budget to better show the spread)
-                const x = 80 + (Math.log(state.budget + 1) / Math.log(maxBudget + 1)) * chartWidth;
-                const y = chartHeight + 30 - (state.beadPercent / maxBeadPercent) * chartHeight;
+                const x = (isMobile ? 60 : 80) + (Math.log(state.budget + 1) / Math.log(maxBudget + 1)) * chartWidth;
+                const y = chartHeight + (isMobile ? 20 : 30) - (state.beadPercent / maxBeadPercent) * chartHeight;
                 
-                // Calculate size based on BEAD dependency
-                const size = Math.max(25, Math.min(70, 25 + state.beadPercent * 2.5));
+                // Calculate size based on BEAD dependency (smaller on mobile)
+                const baseSizeMultiplier = isMobile ? 1.5 : 2.5;
+                const minSize = isMobile ? 20 : 25;
+                const maxSize = isMobile ? 50 : 70;
+                const size = Math.max(minSize, Math.min(maxSize, minSize + state.beadPercent * baseSizeMultiplier));
                 
                 bubble.style.left = `${x - size/2}px`;
                 bubble.style.top = `${y - size/2}px`;
                 bubble.style.width = `${size}px`;
                 bubble.style.height = `${size}px`;
-                bubble.style.fontSize = `${Math.max(10, size * 0.18)}px`;
+                bubble.style.fontSize = `${Math.max(isMobile ? 9 : 10, size * 0.18)}px`;
                 
                 // Apply filter
                 if (!activeFilters.has(state.lean)) {
@@ -515,19 +644,63 @@
                     tooltip.innerHTML = `
                         <strong>${state.name}</strong><br>
                         <strong>Political lean:</strong> ${politicalLean}<br>
-                        <strong>Annual Budget:</strong> $${state.budget.toFixed(1)}B<br>
-                        <strong>BEAD Funding:</strong> $${state.beadFunding.toFixed(2)}B<br>
+                        <strong>Annual Budget:</strong> ${state.budget.toFixed(1)}B<br>
+                        <strong>BEAD Funding:</strong> ${state.beadFunding.toFixed(2)}B<br>
                         <strong>BEAD as % of Budget:</strong> ${state.beadPercent.toFixed(1)}%<br>
                         <em>${affordability}</em>
                     `;
                     tooltip.style.display = 'block';
-                    tooltip.style.left = `${e.pageX + 10}px`;
-                    tooltip.style.top = `${e.pageY - 10}px`;
+                    
+                    // Better positioning on mobile
+                    if (isMobile) {
+                        tooltip.style.left = '10px';
+                        tooltip.style.top = '10px';
+                        tooltip.style.right = '10px';
+                        tooltip.style.maxWidth = 'calc(100% - 20px)';
+                    } else {
+                        tooltip.style.left = `${e.pageX + 10}px`;
+                        tooltip.style.top = `${e.pageY - 10}px`;
+                        tooltip.style.right = 'auto';
+                        tooltip.style.maxWidth = '250px';
+                    }
                 });
                 
                 bubble.addEventListener('mouseleave', () => {
                     document.getElementById('tooltip').style.display = 'none';
                 });
+                
+                // Touch events for mobile
+                if (isMobile) {
+                    bubble.addEventListener('touchstart', (e) => {
+                        e.preventDefault();
+                        const tooltip = document.getElementById('tooltip');
+                        const affordability = state.beadPercent < 2 ? 'Can easily afford to resist' : 
+                                            state.beadPercent < 5 ? 'Moderate pressure to comply' : 
+                                            state.beadPercent < 10 ? 'High pressure to comply' :
+                                            'Extreme pressure to comply';
+                        
+                        const politicalLean = state.lean.charAt(0).toUpperCase() + state.lean.slice(1);
+                        
+                        tooltip.innerHTML = `
+                            <strong>${state.name}</strong><br>
+                            <strong>Political lean:</strong> ${politicalLean}<br>
+                            <strong>Annual Budget:</strong> ${state.budget.toFixed(1)}B<br>
+                            <strong>BEAD Funding:</strong> ${state.beadFunding.toFixed(2)}B<br>
+                            <strong>BEAD as % of Budget:</strong> ${state.beadPercent.toFixed(1)}%<br>
+                            <em>${affordability}</em>
+                        `;
+                        tooltip.style.display = 'block';
+                        tooltip.style.left = '10px';
+                        tooltip.style.top = '10px';
+                        tooltip.style.right = '10px';
+                        tooltip.style.maxWidth = 'calc(100% - 20px)';
+                        
+                        // Hide after 3 seconds
+                        setTimeout(() => {
+                            tooltip.style.display = 'none';
+                        }, 3000);
+                    });
+                }
                 
                 container.appendChild(bubble);
             });
@@ -541,10 +714,12 @@
             const gridContainer = document.getElementById('gridLines');
             gridContainer.innerHTML = '';
             
+            const isMobile = window.innerWidth <= 768;
+            
             // Vertical grid lines (budget)
             const budgetTicks = [1, 5, 10, 25, 50, 100, 200];
             const maxBudget = Math.max(...stateData.map(s => s.budget));
-            const chartWidth = gridContainer.parentElement.getBoundingClientRect().width - 110;
+            const chartWidth = gridContainer.parentElement.getBoundingClientRect().width - (isMobile ? 80 : 110);
             
             budgetTicks.forEach(tick => {
                 if (tick <= maxBudget) {
@@ -559,7 +734,7 @@
             // Horizontal grid lines (percentage)
             const percentTicks = [0, 5, 10, 15, 20];
             const maxPercent = Math.max(...stateData.map(s => s.beadPercent));
-            const chartHeight = gridContainer.parentElement.getBoundingClientRect().height - 90;
+            const chartHeight = gridContainer.parentElement.getBoundingClientRect().height - (isMobile ? 60 : 90);
             
             percentTicks.forEach(tick => {
                 if (tick <= maxPercent) {
